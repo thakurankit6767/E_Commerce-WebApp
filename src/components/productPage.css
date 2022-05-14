@@ -1,0 +1,102 @@
+.maincontainer {
+  display: flex;
+  /* border: 3px solid yellow; */
+  height: 100vh;
+}
+.buttoncontainer {
+  width: 16%;
+  /* border: 2px solid red; */
+  align-items: center;
+}
+.buttondiv {
+  /* border: 2px solid red; */
+  width: 65%;
+  margin: auto;
+  text-align: center;
+}
+.filterbycat {
+  text-align: center;
+  font-size: 15px;
+}
+
+.allproductdiv {
+  width: 84%;
+  height: max-content;
+  display: flex;
+  gap: 5%;
+  /* border: 3px solid red; */
+  flex-wrap: wrap;
+}
+.sortdiv {
+  margin-top: 85px;
+  display: flex;
+  height: 30px;
+}
+.sortdiv1 {
+  /* border: 2px solid green; */
+  margin-left: 70%;
+  display: flex;
+  width: 20%;
+  z-index: 5;
+  align-content: center;
+}
+
+.sortdiv1 {
+  position: sticky;
+  top: 0;
+}
+
+.images {
+  width: 20%;
+  margin-top: 3%;
+}
+.ptitle,
+.pprice,
+.pcdiscount {
+  font-size: 1rem;
+  text-align: center;
+}
+
+.pname {
+  font-size: 12px;
+  overflow: hidden;
+  text-align: center;
+  width: 230px;
+  height: 18px;
+  /* border: 1px solid red; */
+}
+
+
+.paginationarrow {
+  color: blue;
+  list-style: none;
+  display: flex;
+  margin: auto;
+  gap: 5px;
+  cursor: pointer;
+  justify-content: space-around;
+  width: 50%;
+  margin-top: 20px;
+  margin-top: 7%;
+  background-color: light-green;
+}
+#addtocartbtn {
+  height: 8%;
+  width: 82%;
+  background-color: #6c1dff;
+  border-radius: 5px;
+  color: white;
+  font-size: 80%;
+}
+
+#sortbutton:hover {
+  background-color: red;
+  color: rgb(255, 255, 255);
+  font-size: 20;
+ 
+}
+
+#paginationdiv {
+  /* border: 2px solid red; */
+  margin-top: 30%;
+}

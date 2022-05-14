@@ -1,0 +1,26 @@
+img {
+  width: 100%;
+}
+* {
+  text-align: center;
+}
+
+#maincontainer {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 15px;
+  height: auto;
+  width: 80%;
+  margin: auto;
+  margin-top: 10%;
+  /* border: 2px solid green; */
+}
+
+#addtocartntn {
+  height: 30px;
+  width: 140px;
+  background-color: #692ff1;
+  border-radius: 5px;
+  color: white;
+  border: none;
+}

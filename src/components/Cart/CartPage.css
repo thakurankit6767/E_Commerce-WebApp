@@ -1,0 +1,62 @@
+.maincontainer {
+  width: 100%;
+  height: auto;
+  margin: auto;
+  margin-top: 20%;
+  display: flex;
+  gap: 2%;
+  margin: auto;
+  /* border: 3px solid red; */
+  text-align: center;
+}
+.cartdiv {
+  width: 50%;
+  margin-top: 70px;
+  /* border: 2px solid green; */
+}
+.btns:hover {
+  background-color: red;
+  color: white;
+  border: none;
+  width: 100px;
+  height: 30px;
+}
+
+.imguse {
+  width: 130px;
+  height: 180px;
+}
+
+#buttonplusminusdiv{
+  display: flex;
+  width: 90px;
+  /* border: 1px solid red; */
+  margin: auto;
+  margin-top: 20px;
+  height: 20px;
+  align-content: center;
+
+}
+
+#buttonplusminus:hover{
+  background-color: red;
+  color: white;
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+}
+
+#checkoutbutton{
+  background-color: red;
+  color: white;
+  border: none;
+  width: 200px;
+  height: 35px;
+  margin: auto;
+  margin-top: 50px;
+}
+.checkoutbuttonlink{
+  color: rgb(255, 255, 255);
+}
+
