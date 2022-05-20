@@ -1,7 +1,7 @@
 .maincontainer {
   display: flex;
   /* border: 3px solid yellow; */
-  height: 100vh;
+  height: 180vh;
 }
 .buttoncontainer {
   width: 16%;
@@ -66,7 +66,6 @@
   /* border: 1px solid red; */
 }
 
-
 .paginationarrow {
   color: blue;
   list-style: none;
@@ -93,10 +92,26 @@
   background-color: red;
   color: rgb(255, 255, 255);
   font-size: 20;
- 
 }
 
 #paginationdiv {
   /* border: 2px solid red; */
   margin-top: 30%;
+}
+#paginationdiv {
+  width: 50%;
+  /* border: 5px solid red; */
+  margin: auto;
+}
+
+.paginate {
+  width: 100%;
+  /* border: 2px solid  rgb(27, 248, 63); */
+  display: flex;
+  font-style: none;
+  gap: 40px;
+  list-style: none;
+  cursor: pointer;
+  font-size: larger;
+  font-weight: bold;
 }

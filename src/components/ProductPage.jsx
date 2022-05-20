@@ -5,30 +5,35 @@ import { useNavigate, useParams } from "react-router-dom";
 import storeData, { addCart } from "../redux/product/action";
 import "./productPage.css";
 
+import ReactPaginate from "react-paginate";
+
 const ProductPage = () => {
   const [categoryB, setCategoryB] = useState("");
   const [sort, setSort] = useState("");
 
+  const [page, setPage] = useState(0);
+
   const dispatch = useDispatch();
 
   const handleNavigateProduct = (productId) => {
-    navigate(`product/${productId}`);
+    navigate(`Product/${productId}`);
   };
   const data = useSelector((state) => state.data.data);
   console.log(data);
 
-  // foraddtocart
-  const handleCart = (idb) => {
-    data.forEach((elem) => {
-      if (elem.id === idb) {
-        dispatch(addCart(elem));
-      }
-    });
-  };
-
   const navigate = useNavigate();
+
   const params = useParams();
   console.log("users", params.id);
+
+  //  for change the page
+  const itemLim = 8;
+  const pagesVisit = page * itemLim;
+  const changePagePagination = ({ selected }) => {
+    setPage(selected);
+  };
+
+  const pageTotal = Math.ceil(data.length / itemLim);
 
   // StoreData to Redux
   useEffect(() => {
@@ -38,12 +43,17 @@ const ProductPage = () => {
       .catch((error) => console.log(error));
   }, []);
 
+
+
+  const search = useSelector((state) => state.data.search);
+  console.log("users", search);
+
   return (
     <>
       {/* sort hightolowbuttons */}
       <div className="sortdiv">
         <div className="sortdiv1">
-         Sort By :
+          Sort By :
           <Button
             id="sortbutton"
             onClick={() => {
@@ -141,6 +151,7 @@ const ProductPage = () => {
               Remove Filter
             </Button>
           </div>
+
           <br />
         </div>
 
@@ -155,7 +166,15 @@ const ProductPage = () => {
               }
             })
 
-            
+
+                //serachdata
+                .filter((elem) => {
+                  if (search == "") {
+                    return elem;
+                  } else {
+                    return elem.brand.toLowerCase().includes(search.toLowerCase());
+                  }
+                })
 
             //sortdata
             .sort((a, b) => {
@@ -167,6 +186,9 @@ const ProductPage = () => {
                 return b.price - a.price;
               }
             })
+
+            //pagination
+            .slice(pagesVisit, pagesVisit + itemLim)
 
             //map all products data
             .map((elem) => {
@@ -187,16 +209,25 @@ const ProductPage = () => {
                   {/* // button for addtocart */}
                   <Button
                     id="addtocartbtn"
-                    onClick={() => {
-                      handleCart(elem.id);
-                    }}
+                    onClick={() => handleNavigateProduct(elem.id)}
                   >
-                    Add To Cart
+                    View Product
                   </Button>
                 </div>
               );
             })}
         </div>
+      </div>
+
+      <div id="paginationdiv">
+        <ReactPaginate
+          className="paginate"
+          previousLabel={"Previous"}
+          nextLabel={"Next"}
+          pageCount={pageTotal}
+          onPageChange={changePagePagination}
+          containerClassName={"paginationarrow"}
+        />
       </div>
     </>
   );

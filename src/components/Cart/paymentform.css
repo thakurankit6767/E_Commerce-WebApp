@@ -1,0 +1,63 @@
+.big-div {
+  width: 100%;
+  /* border: 1px solid green; */
+  display: flex;
+  margin-top: 100px;
+}
+.payment-div {
+  width: 50%;
+  border: 1px solid rgb(0, 0, 0);
+}
+
+.address-div-list {
+  width: 50%;
+  border: 1px solid rgb(0, 0, 0);
+}
+
+.payment-symbol-div {
+  display: flex;
+  align-content: center;
+  width: 70%;
+  margin: auto;
+  /* border: 1px solid red; */
+ 
+}
+.payment-symbol-div > img {
+  width: 450px;
+  height: 60px;
+}
+
+.Make-Payment {
+  background-color: red;
+  border: none;
+  color: white;
+  width: 170px;
+  margin-top: 10px;
+  height: 40px;
+  border-radius: 8px;
+}
+
+.Make-Payment:hover {
+  background-color: rgb(0, 0, 0);
+  border: none;
+  color: white;
+  width: 180px;
+  margin-top: 10px;
+  height: 40px;
+  border-radius: 8px;
+}
+
+.addressdetails{
+  width: 200px;
+  border: 2px solid red;
+}
+
+.address-div-one{
+  width: 500px;
+  /* border: 1px solid green; */
+  display: flex;
+  margin: auto;
+  }
+.all-shipping-address{
+  /* border: 5px solid yellow; */
+}

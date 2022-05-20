@@ -1,19 +1,26 @@
-.maincontainer {
-  width: 100%;
-  height: auto;
-  margin: auto;
-  margin-top: 20%;
+.main-contain {
+  /* border: 6px solid yellow; */
   display: flex;
-  gap: 2%;
+}
+
+.maincontainer-cart {
+ 
+  display: flex;
+  width: 70%;
   margin: auto;
-  /* border: 3px solid red; */
+  /* border: 5px solid rgb(38, 248, 90); */
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  margin-left: 5%;
 }
 .cartdiv {
-  width: 50%;
-  margin-top: 70px;
-  /* border: 2px solid green; */
+  width: 100%;
+  border-bottom: 1px solid rgb(98, 2, 224);
+  display: flex;
+  flex-direction: row;
 }
+
 .btns:hover {
   background-color: red;
   color: white;
@@ -23,11 +30,11 @@
 }
 
 .imguse {
-  width: 130px;
-  height: 180px;
+  width: 60px;
+  height: 80px;
 }
 
-#buttonplusminusdiv{
+#buttonplusminusdiv {
   display: flex;
   width: 90px;
   /* border: 1px solid red; */
@@ -35,10 +42,9 @@
   margin-top: 20px;
   height: 20px;
   align-content: center;
-
 }
 
-#buttonplusminus:hover{
+#buttonplusminus:hover {
   background-color: red;
   color: white;
   border: none;
@@ -47,16 +53,62 @@
   border-radius: 5px;
 }
 
-#checkoutbutton{
+#checkoutbutton {
   background-color: red;
   color: white;
   border: none;
   width: 200px;
   height: 35px;
   margin: auto;
-  margin-top: 50px;
+  margin-top: 20px;
 }
-.checkoutbuttonlink{
+.checkoutbuttonlink {
   color: rgb(255, 255, 255);
 }
 
+.shopping-cart-title {
+  text-align: center;
+  margin-top: 85px;
+}
+.color-div {
+  margin-left: 30px;
+  margin-top: 6%;
+  display: flex;
+  /* border: 1px solid pink; */
+  gap: 5%;
+  align-items: center;
+  width: 70%;
+}
+.checkoutbutton {
+  margin-left: 70px;
+  margin-top: 15px;
+  /* border: 2px solid yellow; */
+  width: 200px;
+}
+.offer-div {
+  border: 5px solid rgb(255, 181, 20);
+  width: 30%;
+  border-radius: 10px;
+  height: 250px;
+}
+
+.total-div {
+  width: auto;
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: space-around;
+}
+
+.image-div {
+  width: 200px;
+  /* border: 2px solid red; */
+}
+
+#clear-cart-button{
+  background-color: red;
+  color: white;
+}
+#clear-cart-button:hover{
+  background-color: rgb(197, 255, 36);
+  color: rgb(0, 0, 0);
+}

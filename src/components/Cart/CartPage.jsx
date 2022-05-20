@@ -12,9 +12,12 @@ import {
 
 export const CartPage = () => {
   const dispatch = useDispatch();
+
   const data = useSelector((state) => state.data.data);
   console.log("cartdata", data);
   const cartproducts = useSelector((state) => state.data.cart);
+
+  var total = 0;
 
   const RemoveItem = (idx) => {
     dispatch(decreItem(idx));
@@ -30,62 +33,99 @@ export const CartPage = () => {
     console.log(filterproductdata);
     dispatch(deleteitemcart(idx));
   };
+
   const handlecartDelete = () => {
     dispatch(removecart());
   };
-  // console.log(cartproducts)
+
   let users = cartproducts;
   return (
     <>
-      <Button onClick={() => handlecartDelete}>delete cart</Button>
-
-      <div className="maincontainer">
-        {users.map((elem) => {
-          return (
-            <div key={elem.id} className="cartdiv">
-              <h5 className="title">{elem.brand}</h5>
-              <img
-                className="imguse"
-                src={elem.images.image1}
-                alt="productii"
-              />
-              <p> {elem.color}</p>
-              <p> Rs {elem.price * elem.quantity}</p>
-              <br />
-              <div>
-                {" "}
-                <button
-                  className="btns"
-                  onClick={() => handlecartRemove(elem.id)}
-                >
-                  Remove Item
-                </button>
-              </div>
-
-              <div id="buttonplusminusdiv">
-                <button id="buttonplusminus" onClick={() => Additem(elem.id)}>
-                  +
-                </button>
-                <p>Qty:{elem.quantity}</p>
-                {elem.quantity > 1 ? (
-                  <button
-                    id="buttonplusminus"
-                    onClick={() => RemoveItem(elem.id)}
-                  >
-                    -
-                  </button>
-                ) : null}
-              </div>
-            </div>
-          );
-        })}
+      <div className="shopping-cart-title">
+        <h3>SHOPPING CART</h3>
+        <Button id="clear-cart-button" onClick={() => handlecartDelete(removecart)}>Clear cart</Button>
       </div>
 
-      <Button id="checkoutbutton">
-        <Link className="checkoutbuttonlink" to="/CheckOutPage">
-          Proceed To CheckOut
-        </Link>
-      </Button>
+      <div className="main-contain">
+        <div className="maincontainer-cart">
+          {users.map((elem) => {
+            total += elem.price * elem.quantity;
+            return (
+              <div key={elem.id} className="cartdiv">
+                <div>
+                  <div className="image-div">
+                    <h3 className="title">{elem.brand}</h3>
+
+                    <img
+                      className="imguse"
+                      src={elem.images.image1}
+                      alt="productii"
+                    />
+                  </div>
+                </div>
+
+                <div className="color-div">
+                  <div>
+                    <h4> Color: {elem.color}</h4>
+                  </div>
+                  <div>
+                    {" "}
+                    <h4> Rs {elem.price * elem.quantity}</h4>
+                  </div>
+                  <br />
+                  <div>
+                    {" "}
+                    <button
+                      className="btns"
+                      onClick={() => handlecartRemove(elem.id)}
+                    >
+                      Remove Item
+                    </button>
+                  </div>
+
+                  <button id="buttonplusminus" onClick={() => Additem(elem.id)}>
+                    +
+                  </button>
+                  <h4>Qty:{elem.quantity}</h4>
+                  {elem.quantity > 1 ? (
+                    <button
+                      id="buttonplusminus"
+                      onClick={() => RemoveItem(elem.id)}
+                    >
+                      -
+                    </button>
+                  ) : null}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        <div className="offer-div">
+          <div className="total-div">
+            <div>
+              <h4>Total:</h4>
+              <h4>Shipping:</h4>
+              <h4>Subtotal:</h4>
+            </div>
+            <div>
+              <h4>Rs {total}</h4>
+              <h4>FREE</h4>
+              <h4>
+                <b>Rs {total}</b>
+              </h4>
+            </div>
+          </div>
+
+          <div className="checkoutbutton">
+            <Button id="checkoutbutton">
+              <Link className="checkoutbuttonlink" to="/CheckOutPage">
+                Proceed To CheckOut
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </div>
     </>
   );
 };

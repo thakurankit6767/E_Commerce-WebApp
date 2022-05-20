@@ -1,110 +1,248 @@
-import * as React from "react";
-import CssBaseline from "@mui/material/CssBaseline";
-import AppBar from "@mui/material/AppBar";
+import { Button } from "@material-ui/core";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+import "./checkoutpage.css";
+
+import { store } from "../../redux/store";
+import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
-import Toolbar from "@mui/material/Toolbar";
-import Paper from "@mui/material/Paper";
-import Stepper from "@mui/material/Stepper";
-import Step from "@mui/material/Step";
-import StepLabel from "@mui/material/StepLabel";
-import Button from "@mui/material/Button";
-import Link from "@mui/material/Link";
-import Typography from "@mui/material/Typography";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import AddressForm from "./AddressForm";
-import PaymentForm from "./PaymentForm";
-import Review from "./Review";
+import TextField from "@mui/material/TextField";
+import InputLabel from "@mui/material/InputLabel";
+import { AddressData } from "../../redux/address/Action";
+import {
+  decreItem,
+  deleteitemcart,
+  increItem,
+  removecart,
+} from "../../redux/product/action";
 
-import { NavLink } from "../Navbar/NavLink";
+export const CheckoutPage = () => {
+  const [name, setName] = useState("");
+  const [mobile, setMobile] = useState("");
+  const [pincode, setPincode] = useState("");
+  const [address, setAddress] = useState("");
+  const [locality, setLocality] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
 
-const steps = ["Shipping address", "Payment details", "Review your order"];
+  const navigate = useNavigate();
 
-function getStepContent(step) {
-  switch (step) {
-    case 0:
-      return <AddressForm />;
-    case 1:
-      return <PaymentForm />;
-    case 2:
-      return <Review />;
-    default:
-      throw new Error("Unknown step");
-  }
-}
-
-<NavLink />;
-
-const theme = createTheme();
-
-export default function CheckoutPage() {
-  const [activeStep, setActiveStep] = React.useState(0);
-
-  const handleNext = () => {
-    setActiveStep(activeStep + 1);
+  const handleAddress = () => {
+    const data = {
+      name,
+      mobile,
+      pincode,
+      address,
+      locality,
+      city,
+      state,
+    };
+    dispatch(AddressData(data));
+    console.log("datatt", data);
+    navigate("/Paymentform");
   };
 
-  const handleBack = () => {
-    setActiveStep(activeStep - 1);
+  const dispatch = useDispatch();
+
+  const data = useSelector((state) => state.data.data);
+  console.log("cartdata", data);
+  const cartproducts = useSelector((state) => state.data.cart);
+
+  var total = 0;
+
+  const RemoveItem = (idx) => {
+    dispatch(decreItem(idx));
+  };
+  const Additem = (idx) => {
+    dispatch(increItem(idx));
   };
 
+  const handlecartRemove = (idx) => {
+    const filterproductdata = cartproducts.filter((elem) => {
+      return elem.id != idx;
+    });
+    console.log(filterproductdata);
+    dispatch(deleteitemcart(idx));
+  };
+  const handlecartDelete = () => {
+    dispatch(removecart());
+  };
+
+  let users = cartproducts;
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <hr />
-      <hr />
-      <hr />
-      <hr />
-      <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
-        <Paper
-          variant="outlined"
-          sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}
-        >
-          <Typography component="h1" variant="h4" align="center">
-            Checkout
-          </Typography>
-          <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
-            {steps.map((label) => (
-              <Step key={label}>
-                <StepLabel>{label}</StepLabel>
-              </Step>
-            ))}
-          </Stepper>
-          <React.Fragment>
-            {activeStep === steps.length ? (
-              <React.Fragment>
-                <Typography variant="h5" gutterBottom>
-                  Thank you for your order.
-                </Typography>
-                <Typography variant="subtitle1">
-                  Your order number is #2001539. We have emailed your order
-                  confirmation, and will send you an update when your order has
-                  shipped.
-                </Typography>
-              </React.Fragment>
-            ) : (
-              <React.Fragment>
-                {getStepContent(activeStep)}
-                <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-                  {activeStep !== 0 && (
-                    <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
-                      Back
-                    </Button>
-                  )}
+    <>
+      <div className="shopptitle">
+        <h3>SHOPPING CART</h3>
+      </div>
 
-                  <Button
-                    variant="contained"
-                    onClick={handleNext}
-                    sx={{ mt: 3, ml: 1 }}
-                  >
-                    {activeStep === steps.length - 1 ? "Place order" : "Next"}
-                  </Button>
-                </Box>
-              </React.Fragment>
-            )}
-          </React.Fragment>
-        </Paper>
-      </Container>
-    </ThemeProvider>
+     
+      <div className="mainCo">
+        <div className="address-div-div">
+          <Box
+            component="form"
+            sx={{
+              "& > :not(style)": { m: 1, width: "50ch" },
+            }}
+            noValidate
+            autoComplete="off"
+          >
+            <InputLabel>CONTACT DETAILS</InputLabel>
+            <TextField
+              label="Name*"
+              onChange={(e) => setName(e.target.value)}
+              variant="outlined"
+            />
+            <br />
+            <TextField
+              id="outlined-basic"
+              label="Mobile No*"
+              onChange={(e) => setMobile(e.target.value)}
+              variant="outlined"
+            />
+            <TextField
+              id="outlined-basic"
+              label="Mobile No*"
+              onChange={(e) => setAddress(e.target.value)}
+              variant="outlined"
+            />
+            <TextField
+              id="outlined-basic"
+              label="Pin Code*"
+              onChange={(e) => setPincode(e.target.value)}
+              variant="outlined"
+            />
+            <br />
+            <TextField
+              id="outlined-basic"
+              label="Address (House No, Building, Street, Area)*"
+              onChange={(e) => setAddress(e.target.value)}
+              variant="outlined"
+            />
+            <br />
+            <TextField
+              id="outlined-basic"
+              label="Locality / Town*"
+              onChange={(e) => setLocality(e.target.value)}
+              variant="outlined"
+            />
+            <br />
+            <TextField
+              id="outlined-basic"
+              label="City / District*"
+              onChange={(e) => setCity(e.target.value)}
+              variant="outlined"
+            />
+            <TextField
+              id="outlined-basic"
+              label="State*"
+              onChange={(e) => setState(e.target.value)}
+              variant="outlined"
+            />
+          </Box>
+
+          <div>
+            <div
+              onClick={
+                handleAddress
+                // () => navigate("/payment")
+              }
+            >
+              <button
+                disabled={
+                  !name ||
+                  !mobile ||
+                  !pincode ||
+                  !address ||
+                  !locality ||
+                  !city ||
+                  !state
+                }
+                id="go-to-payment-page-button"
+              >
+                <b>Go To Payment Page</b>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className="cart-div">
+          <div className="maincont-cart">
+            {users.map((elem) => {
+              total += elem.price * elem.quantity;
+              return (
+                <div key={elem.id} className="cartdiv-div">
+                  <div>
+                    <div className="image-div-div">
+                      <h3 className="title">{elem.brand}</h3>
+
+                      <img
+                        className="imguse-div"
+                        src={elem.images.image1}
+                        alt="productii"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="color-div-div">
+                    <div>
+                      <h4> Color: {elem.color}</h4>
+                    </div>
+                    <div>
+                      {" "}
+                      <h4> Rs {elem.price * elem.quantity}</h4>
+                    </div>
+                    <br />
+                    <div>
+                      {" "}
+                      <button
+                        className="btns-div"
+                        onClick={() => handlecartRemove(elem.id)}
+                      >
+                        Remove Item
+                      </button>
+                    </div>
+
+                    <button
+                      id="buttonplusminus-div-div"
+                      onClick={() => Additem(elem.id)}
+                    >
+                      +
+                    </button>
+                    <h4>Qty:{elem.quantity}</h4>
+                    {elem.quantity > 1 ? (
+                      <button
+                        id="buttonplusminus-div-div"
+                        onClick={() => RemoveItem(elem.id)}
+                      >
+                        -
+                      </button>
+                    ) : null}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="offer-div-div ">
+            <div className="total-div-div">
+              <div>
+                <h4>Total:</h4>
+                <h4>Shipping:</h4>
+                <h4>Subtotal:</h4>
+              </div>
+              <div>
+                <h4>Rs {total}</h4>
+                <h4>FREE</h4>
+                <h4>
+                  <b>Rs {total}</b>
+                </h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
-}
+};
+
+export default CheckoutPage;

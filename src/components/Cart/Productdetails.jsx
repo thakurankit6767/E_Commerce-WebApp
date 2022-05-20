@@ -1,26 +1,55 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import "./productdetails.css";
 
+import { Button } from "@material-ui/core";
+import { addCart } from "../../redux/product/action";
+
 export default function Productdetails() {
   const params = useParams();
-  const pId = params.id;
-  console.log(pId);
+  console.log("users", params.id);
+  const dispatch = useDispatch();
+  const idx = params.id;
+  console.log(idx);
 
   const data = useSelector((state) => state.data.data);
   console.log("product", data);
 
-  var user = data.filter((mn) => {
-    if (+mn.id === +pId) {
-      return mn;
+  var productinfo = data.filter((x) => {
+    if (+x.id === +idx) {
+      return x;
     }
   });
-  console.log("product", user);
+  console.log("productinfo", productinfo);
+
+ 
+
+  const handleCart = (idb) => {
+    data.forEach((elem) => {
+      if (elem.id === idb) {
+        dispatch(addCart(elem));
+        alert("Product Added To Cart Successfully")
+      }
+    });
+  };
+
+  // const params = useParams();
+
+  // const data = useSelector((state) => state.data.data);
+  // console.log("product", data);
+
+  // var user = data.filter((mn) => {
+  //   if (+mn.id === +pId) {
+  //     return mn;
+  //   }
+  // });
+  // console.log("product", user);
 
   return (
     <div>
-      {user.map((ele) => {
+       
+      {productinfo.map((ele) => {
         return (
           <div>
             <div id="maincontainer">
@@ -28,10 +57,10 @@ export default function Productdetails() {
                 <img src={ele.images.image1} />
               </div>
               <div id="div3">
-                <h2>{ele.brand}</h2>
-                <h3>{ele.title}</h3>
-                <h3>{ele.color}</h3>
-                <h3>{ele.rating}</h3>
+                <h2>Brand Name: {ele.brand}</h2>
+                <h3>Title: {ele.title}</h3>
+                <h3>Color: {ele.color}</h3>
+                <h3>Rating: {ele.rating}</h3>
 
                 <h3>
                   Rs. {ele.price} <span>{ele.off_price}</span>
@@ -39,12 +68,19 @@ export default function Productdetails() {
                 </h3>
 
                 <div id="button">
-                  <button id="addtocartntn">Add To Cart</button>
+                  <Button
+                    id="addtocartntn"
+                    onClick={() => {
+                      handleCart(ele.id);
+                    }}
+                  >
+                    Add To Cart
+                  </Button>
                 </div>
 
                 <div id="content">
                   <ul>
-                    <h5>{ele.desc}</h5>
+                    <h5>Description: {ele.desc}</h5>
                   </ul>
                 </div>
               </div>

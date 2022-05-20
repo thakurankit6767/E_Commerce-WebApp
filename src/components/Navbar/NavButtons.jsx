@@ -1,5 +1,6 @@
 import { Box, Button, makeStyles, Badge } from "@material-ui/core";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -24,19 +25,9 @@ export const NavButtons = () => {
     <>
       <Box>
         <Button className={classes.buttons}>
-          <Badge color="Danger">
-            <Link to="/LoginPage">
-              <p>Login</p>
-            </Link>
-          </Badge>
-        </Button>
-      </Box>
-
-      <Box>
-        <Button className={classes.buttons}>
           <Badge color="primary">
-            <Link to="/SignUp">
-              <p>SignUp</p>
+            <Link to="/LoginPage">
+              <AccountCircleIcon />
             </Link>
           </Badge>
         </Button>
@@ -48,7 +39,9 @@ export const NavButtons = () => {
             <Link to="/cartPage">
               <ShoppingBagIcon />
             </Link>
-            <span style={{ color: "red",fontSize:"bold"}}>{cartproducts.length}</span>
+            <span style={{ color: "red", fontSize: "bold" }}>
+              {cartproducts.length}
+            </span>
           </Badge>
         </Button>
       </Box>

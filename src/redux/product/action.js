@@ -6,6 +6,7 @@ export const REMOVE_ALL = "REMOVE_ALL";
 export const INC_ITEM = "INC_ITEM";
 export const DEC_ITEM = "DEC_ITEM";
 export const ITEM_CART = "ITEM_CART";
+export const SEARCH_DATA = "SEARCH_DATA";
 
 const storeData = (payload) => ({
   type: STORE_DATA,
@@ -16,6 +17,13 @@ export const addCart = (payload) => ({
   type: ADD_CART,
   payload: payload,
 });
+
+
+export const searchData = (payload) => ({
+  type: SEARCH_DATA,
+  payload: payload,
+});
+
 export const deleteitemcart = (payload) => ({
   type: DELETE_CART,
   payload: payload,

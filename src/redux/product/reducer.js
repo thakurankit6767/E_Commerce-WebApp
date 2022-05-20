@@ -6,6 +6,7 @@ import {
   INC_ITEM,
   REMOVE_ALL,
   ITEM_CART,
+  SEARCH_DATA,
 } from "./action";
 
 const initState = {
@@ -13,6 +14,7 @@ const initState = {
   cart: [],
   add: [],
   remove: [],
+  search:"",
 };
 
 export const productReducer = (state = initState, { type, payload }) => {
@@ -45,7 +47,10 @@ export const productReducer = (state = initState, { type, payload }) => {
       var itemcart = [...payload];
       return { ...state, cart: itemcart };
 
-    case INC_ITEM:
+      case SEARCH_DATA:
+        return { ...state, search: payload };
+    
+      case INC_ITEM:
       var Increm = state.cart.map((elem) => {
         if (elem.id === payload) {
           let abc = elem;
@@ -81,7 +86,9 @@ export const productReducer = (state = initState, { type, payload }) => {
       
 
       return { ...state, cart: [...zxcv] };
-    case REMOVE_ALL:
+    
+    
+      case REMOVE_ALL:
       return { ...state, cart: [] };
     default:
       return state;

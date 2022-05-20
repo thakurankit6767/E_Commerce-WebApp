@@ -1,0 +1,43 @@
+.box-container {
+  padding: 60px 40px;
+  background-color: rgb(236, 232, 225);
+  width: 100%;
+  margin-top: 30px;
+  /* border: 2px solid red; */
+}
+
+.container-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 70%;
+  height: 40px;
+  margin: auto;
+  /* background: red; */
+  /* border: 2px solid rgb(58, 255, 206); */
+}
+
+.container-column {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-left: 60px;
+}
+
+.container-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+  grid-gap: 20px;
+}
+
+.container-column {
+  color: rgb(0, 0, 0);
+  margin-bottom: 20px;
+  text-decoration: none;
+  list-style: none;
+}
+
+.container-heading {
+  color: rgb(0, 0, 0);
+  list-style: none;
+}
