@@ -20,9 +20,17 @@ https://www.npmjs.com/package/react-paginate
 react-router-dom
 https://www.npmjs.com/package/react-router-dom
 
+fetch_api
+https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
 
+link
+https://v5.reactrouter.com/web/api/Link
 
+material-UI
+https://mui.com/
 
+Hooks
+https://react-redux.js.org/api/hooks
 
 
 ScreenShots
