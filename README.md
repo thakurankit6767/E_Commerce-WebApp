@@ -18,7 +18,6 @@ ScreenShots
 ![signup](https://user-images.githubusercontent.com/95959359/169657575-fec77ea0-179c-4f84-a0af-2cccd12ce7d7.png)
 ![signin](https://user-images.githubusercontent.com/95959359/169657579-7be2193f-bca0-41f8-916f-093ef70fcbf3.png)
 ![checkoutpage](https://user-images.githubusercontent.com/95959359/169657584-2d13066d-e021-4e1f-9c3a-46f341bcc3cc.png)
-![signup](https://user-images.githubusercontent.com/95959359/169657588-c97107cc-4475-4b37-b2c6-c82c4ca930f0.png)
 ![Uploading shoppigcart.png…]()
 ![shippigetails](https://user-images.githubusercontent.com/95959359/169657599-98ca613d-c11f-4504-b6ba-6ec754a5af46.png)
 ![successpage](https://user-images.githubusercontent.com/95959359/169657600-e1e6c7a2-22c3-44d9-8389-fd3c97322f28.png)
