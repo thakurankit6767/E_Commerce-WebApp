@@ -37,7 +37,7 @@ const ProductPage = () => {
 
   // StoreData to Redux
   useEffect(() => {
-    fetch("https://ecommercee-server-app.herokuapp.com/products")
+    fetch("https://jealous-erin-panda.cyclic.app/products")
       .then((result) => result.json())
       .then((result) => dispatch(storeData(result)))
       .catch((error) => console.log(error));
