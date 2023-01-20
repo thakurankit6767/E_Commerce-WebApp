@@ -27,13 +27,13 @@ export default function Footer() {
             <li href="#">Mumbai</li>
           </div>
 
-//           <div className="container-heading">
-//             <h3>Social Media</h3>
-//             <li href="#">Facebook</li>
-//             <li href="#">Instagram</li>
-//             <li href="#">Twitter</li>
-//             <li href="#">Youtube</li>
-//           </div>
+          <div className="container-heading">
+            <h3>Social Media</h3>
+            <li href="#">Facebook</li>
+            <li href="#">Instagram</li>
+            <li href="#">Twitter</li>
+            <li href="#">Youtube</li>
+          </div>
         </div>
       </div>
     </div>
