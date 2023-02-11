@@ -4,14 +4,23 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import storeData, { addCart } from "../redux/product/action";
 import "./productPage.css";
+import Spinner from "../components/Spinner";
 
 import ReactPaginate from "react-paginate";
 
 const ProductPage = () => {
+  const [loaded, setLoaded] = useState(false);
   const [categoryB, setCategoryB] = useState("");
   const [sort, setSort] = useState("");
 
   const [page, setPage] = useState(0);
+
+  useEffect(() => {
+    let timer = setTimeout(() => setLoaded(true), 2000);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
 
   const dispatch = useDispatch();
 
@@ -43,10 +52,14 @@ const ProductPage = () => {
       .catch((error) => console.log(error));
   }, []);
 
-
-
   const search = useSelector((state) => state.data.search);
   console.log("users", search);
+
+  const loaderstyle = {
+    position: "absolute",
+    left: "50%",
+    top: "35%",
+  };
 
   return (
     <>
@@ -155,68 +168,75 @@ const ProductPage = () => {
           <br />
         </div>
 
-        <div className="allproductdiv">
-          {data
-            //filter data
-            .filter((elem) => {
-              if (categoryB == "") {
-                return elem;
-              } else {
-                return elem.categories == categoryB;
-              }
-            })
+        {!loaded ? (
+          <div style={loaderstyle}>
+            <Spinner />
+          </div>
+        ) : (
+          <div className="allproductdiv">
+            {data
+              //filter data
+              .filter((elem) => {
+                if (categoryB == "") {
+                  return elem;
+                } else {
+                  return elem.categories == categoryB;
+                }
+              })
 
+              //serachdata
+              .filter((elem) => {
+                if (search == "") {
+                  return elem;
+                } else {
+                  return elem.brand
+                    .toLowerCase()
+                    .includes(search.toLowerCase());
+                }
+              })
 
-                //serachdata
-                .filter((elem) => {
-                  if (search == "") {
-                    return elem;
-                  } else {
-                    return elem.brand.toLowerCase().includes(search.toLowerCase());
-                  }
-                })
+              //sortdata
+              .sort((a, b) => {
+                if (sort == "") {
+                  return;
+                } else if (sort == "lowtohigh") {
+                  return a.price - b.price;
+                } else if (sort == "hightolow") {
+                  return b.price - a.price;
+                }
+              })
 
-            //sortdata
-            .sort((a, b) => {
-              if (sort == "") {
-                return;
-              } else if (sort == "lowtohigh") {
-                return a.price - b.price;
-              } else if (sort == "hightolow") {
-                return b.price - a.price;
-              }
-            })
+              //pagination
+              .slice(pagesVisit, pagesVisit + itemLim)
 
-            //pagination
-            .slice(pagesVisit, pagesVisit + itemLim)
+              //map all products data
 
-            //map all products data
-            .map((elem) => {
-              return (
-                <div key={elem.id} className="images">
-                  <img
-                    src={elem.images.image1}
-                    onClick={() => handleNavigateProduct(elem.id)}
-                    alt="productimage"
-                  />
+              .map((elem) => {
+                return (
+                  <div key={elem.id} className="images">
+                    <img
+                      src={elem.images.image1}
+                      onClick={() => handleNavigateProduct(elem.id)}
+                      alt="productimage"
+                    />
+                    <h4 className="ptitle">{elem.brand}</h4>
+                    <p className="pname">{elem.title}</p>
+                    <p className="pprice"> Rs {elem.price}</p>
+                    <p className="pprice"> Color: {elem.color}</p>
+                    <p className="pcdiscount">Discount : {elem.discount}%</p>
 
-                  <h4 className="ptitle">{elem.brand}</h4>
-                  <p className="pname">{elem.title}</p>
-                  <p className="pprice"> Rs {elem.price}</p>
-                  <p className="pprice"> Color: {elem.color}</p>
-                  <p className="pcdiscount">Discount : {elem.discount}%</p>
-
-                  {/* // button for addtocart */}
-                  <Button
-                    id="addtocartbtn"
-                    onClick={() => handleNavigateProduct(elem.id)}
-                  >
-                    View Product
-                  </Button>
-                </div>
-              );
-            })}
-        </div>
+                    {/* // button for addtocart */}
+                    <Button
+                      id="addtocartbtn"
+                      onClick={() => handleNavigateProduct(elem.id)}
+                    >
+                      View Product
+                    </Button>
+                  </div>
+                );
+              })}
+          </div>
+        )}
       </div>
 
       <div id="paginationdiv">
