@@ -1,5 +1,5 @@
 import "./NavLink.css";
-import { makeStyles, InputBase, Box } from "@material-ui/core";
+import { makeStyles, InputBase, Box, Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
 import { useNavigate } from "react-router-dom";
@@ -11,7 +11,6 @@ import { searchData } from "../../redux/product/action";
 export const NavLink = () => {
   const navigate = useNavigate();
 
-  
   const [form, setForm] = useState("");
   const dispatch = useDispatch();
   dispatch(searchData(form));
@@ -19,29 +18,36 @@ export const NavLink = () => {
     setForm(e.target.value);
   };
   console.log(form);
+  
+  const asd={
+   
+  }
 
   return (
     <>
-      <ul className="nav">
+      <ul className="nav ">
         <li>
-          <Link to="/">
-            <a href="#" className="home">
-              Home
-            </a>
-          </Link>
+          <Button variant="contained" color="success">
+            <Link to="/">
+              <a href="#" className="home">
+                Home
+              </a>
+            </Link>
+          </Button>
         </li>
 
-        <li>
-          <Link to="/ProductPage"> Products</Link>
+        <li  style={{marginLeft:"10px"}}>
+          <Button variant="contained" color="red">
+            <Link to="/ProductPage"> Products</Link>
+          </Button>
         </li>
 
         <li>
           <InputBase
             type="text"
             placeholder=" Search Favourite Products"
-            
             inputProps={{ "aria-label": "search" }}
-        onChange={handleInput}
+            onChange={handleInput}
             name="search Products"
             style={{
               width: "450px",
